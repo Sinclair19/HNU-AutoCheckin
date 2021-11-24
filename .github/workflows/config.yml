@@ -4,7 +4,7 @@ on:
   # 详细语法参见 https://www.runoob.com/linux/linux-comm-crontab.html
   workflow_dispatch:
   schedule:
-    - cron: '20/60 16-18 * * *'  # 此处设置为北京时间 4:00、4:30、5:00、5:30 共尝试四次
+    - cron: '0 18-20 * * *'  # 此处设置为北京时间 4:00、4:30、5:00、5:30 共尝试四次
   watch:
     types: [started]  # 也可以通过手动对项目 star 来触发
 jobs:
