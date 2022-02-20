@@ -1,6 +1,6 @@
 name: Auto Checkin
 on:
-  # GitHub Actions 使用国际标准时间，与国内相差 16 小时，设置时注意避雷
+  # GitHub Actions 使用国际标准时间，与国内相差 8 小时，设置时注意避雷
   # 详细语法参见 https://www.runoob.com/linux/linux-comm-crontab.html
   workflow_dispatch:
   schedule:
@@ -8,22 +8,22 @@ on:
   watch:
     types: [started]  # 也可以通过手动对项目 star 来触发
 jobs:
-  build:
+  checkin:
     runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
-      - name: checkout
-        uses: 'actions/checkout@master'
-
-      - name: set up python
-        uses: 'actions/setup-python@v2'
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
         with:
           python-version: '3.8'
 
-      - name: install modules
-        run: 'pip install -r requirements.txt'
+      - name: Install basic modules
+        run: 'pip3 install -r requirements.txt'
 
-      - name: auto checkin
+      - name: Install pytorch
+        run: 'pip3 install torch==1.10.2+cpu torchvision==0.11.3+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html'
+
+      - name: Auto checkin
         env:
           USER: ${{ secrets.USER }}
         run: python main.py
