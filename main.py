@@ -85,10 +85,27 @@ class Checker(httpx.Client):
                         'RealCity': self.configs['address'][1],
                         'RealCounty': self.configs['address'][2],
                         'RealAddress': self.configs['address'][3],
-                        'BackState': 1,
-                        'MorningTemp': f'36.{randint(*interval)}',
-                        'NightTemp': f'36.{randint(*interval)}',
-                        'tripinfolist': []
+                        "IsInCampus": "1",
+                        "ParkName": None,
+                        "BuildingName": None,
+                        "IsNormalTemperature": "1",
+                        "Temperature": "36.5",
+                        "IsUnusual": "0",
+                        "UnusualInfo": "",
+                        "IsInsulated": "0",
+                        "InsulatedAddress": None,
+                        "IsOtherRedQr": "0",
+                        "BackState": 1,
+                        "MorningTemp": "36.5",
+                        "NightTemp": "36.5",
+                        "tripinfolist": [],
+                        "QRCodeColor": "绿色",
+                        "IsInDorm": "1",
+                        "BackedAddress": "",
+                        "UnBackType": "",
+                        "UnBackReason": "",
+                        "IsLeaveOrBackToday": "0",
+                        "IsViaHuBei": "0"
                     }
                 ).json()['msg']
                 if message in self.configs['success_tint']:
